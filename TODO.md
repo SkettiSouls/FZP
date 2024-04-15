@@ -4,24 +4,24 @@
 ## Critical:
 * ### Build mode logic
   * #### Fuzzy Mode:
-    * discern and switch modes
-    * default directory
-    * user provided directories
+    * ~discern and switch modes~
+    * ~default directory~
+    * ~user provided directories~
     * looping
     * multiselect
 
   * #### Directory Mode:
-    * discern and switch modes
-    * default directory
-    * user provided directories
+    * ~discern and switch modes~
+    * ~default directory~
+    * ~user provided directories~
     * looping
     * multiselect
     * playlist extensions
 
   * #### Playlist Mode:
-    * discern and switch modes
-    * default directory
-    * user provided directories
+    * ~discern and switch modes~
+    * ~default directory~
+    * ~user provided directories~
     * looping
     * multiselect
     * playlist extensions

@@ -25,6 +25,8 @@
             (rust-bin.stable.latest.default.override {
                 extensions = [ "rust-src" ];
               })
+            # Add libmpv to the devshell.
+            mpv-unwrapped
           ];
         };
       };

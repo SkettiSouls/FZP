@@ -1,11 +1,12 @@
-use std::path::PathBuf;
+use std::{env::set_current_dir, path::PathBuf};
 use clap::Parser;
 
 #[derive(Parser, Debug)]
 #[command(version, about = "Fuzzy player", long_about = None)]
 struct Cli {
     /// Directory to search in
-    #[arg(default_value = "$HOME/Music")]
+    // Default to $XDG_MUSIC_DIR
+    #[arg(default_value = dirs::audio_dir().expect("XDG music directory not found. Please specify a path manually or set XDG_MUSIC_DIR.").into_os_string())]
     path: Option<PathBuf>,
 
     /// Search by directory
@@ -28,6 +29,11 @@ struct Cli {
 
 fn main() {
     let cli = Cli::parse();
+    let music_directory = cli.path.unwrap();
+
+    set_current_dir(music_directory).expect("Failed to change directory.");
+
+    // TODO: Fuzzy finding for music selection
 
     match cli {
         Cli { directory: true, .. } => mode_directory(),

@@ -1,5 +1,8 @@
 use std::{env::set_current_dir, path::PathBuf};
 use clap::Parser;
+use tui::start_tui;
+
+mod tui;
 
 #[derive(Parser, Debug)]
 #[command(version, about = "Fuzzy player", long_about = None)]
@@ -46,6 +49,7 @@ fn mode_fuzzy() {
     let cli = Cli::parse();
 
     println!("You are in fuzzy mode at path `{:#?}`", cli.path.unwrap());
+    start_tui().expect("Failed to start tui");
 }
 
 fn mode_directory() {

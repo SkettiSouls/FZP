@@ -73,6 +73,7 @@ impl Widget for &App {
 }
 
 pub fn start_tui() -> io::Result<()> {
+    let app_result = App::default().run();
     restore();
-    App::default().run()
+    app_result
 }

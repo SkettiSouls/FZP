@@ -1,8 +1,7 @@
-use std::{env::set_current_dir, path::PathBuf};
-use clap::Parser;
-use tui::start_tui;
-
 mod tui;
+
+use clap::Parser;
+use std::{env::set_current_dir, path::PathBuf};
 
 #[derive(Parser, Debug)]
 #[command(version, about = "Fuzzy player", long_about = None)]
@@ -37,9 +36,12 @@ fn main() {
     set_current_dir(music_directory).expect("Failed to change directory.");
 
     // TODO: Fuzzy finding for music selection
+    tui::start_tui().expect("TUI startup failed.");
 
     match cli {
-        Cli { directory: true, .. } => mode_directory(),
+        Cli {
+            directory: true, ..
+        } => mode_directory(),
         Cli { playlist: true, .. } => mode_playlist(),
         _ => mode_fuzzy(),
     };
@@ -49,17 +51,22 @@ fn mode_fuzzy() {
     let cli = Cli::parse();
 
     println!("You are in fuzzy mode at path `{:#?}`", cli.path.unwrap());
-    start_tui().expect("Failed to start tui");
 }
 
 fn mode_directory() {
     let cli = Cli::parse();
 
-    println!("You are in directory mode at path `{:#?}`", cli.path.unwrap());
+    println!(
+        "You are in directory mode at path `{:#?}`",
+        cli.path.unwrap()
+    );
 }
 
 fn mode_playlist() {
     let cli = Cli::parse();
 
-    println!("You are in playlist mode at path `{:#?}`", cli.path.unwrap());
+    println!(
+        "You are in playlist mode at path `{:#?}`",
+        cli.path.unwrap()
+    );
 }
